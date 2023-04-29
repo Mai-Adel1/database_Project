@@ -8,14 +8,14 @@ from tkinter import messagebox as messagebox
 import fun
 
 
-mydp= mysql.connector.connect( 
-    host='database-1.cfo6vewprtg5.eu-north-1.rds.amazonaws.com',
-    user='admin',
-    password='0123456789',
-    database='student_enroll'
-)
+# mydp= mysql.connector.connect( 
+#     host='database-1.cfo6vewprtg5.eu-north-1.rds.amazonaws.com',
+#     user='admin',
+#     password='0123456789',
+#     database='student_enroll'
+# )
 
-mycursor= mydp.cursor()
+# mycursor= mydp.cursor()
 
 
 window=tk.Tk()
