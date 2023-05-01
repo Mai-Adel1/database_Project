@@ -1,199 +1,207 @@
+import tkinter as tk
 from tkinter import *
 from tkcalendar import DateEntry
 import pymysql
 #import mysql.connector as mysq
-
-
-
-
+import fun
 def select():
 
     root= Tk()
-    root.geometry("500x300")
+    root.geometry("500x400")
     root.title("Student Enroll")
     root.configure(background="#EC7063")
     root.resizable(False,False)
 
-    def student_db_control():
-        root.destroy()
-        root1= Tk()
-        date1=StringVar(root1)
-        root1.geometry("500x400")
-        root1.title("Student Enroll")
-        root1.configure(background="#EC7063")
-        root1.resizable(False,False)
-        
+    def delete():
+       # root.destroy()
+        root4= Tk()
+        root4.geometry("500x450")
+        root4.title("Student Enroll")
+        root4.configure(background="#EC7063")
+        root4.resizable(False,False)
+        studentdb_button=Button(root4,text="Student",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_de(1)])
+        studentdb_button.place(x=30,y=10)
+        studentdb_button=Button(root4,text="insturctor",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_de(2)])
+        studentdb_button.place(x=30,y=70)
+        studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_de(3)])
+        studentdb_button.place(x=30,y=130) 
 
-        head1=Label(root1,text='Student Database',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
-        head1.place(x=30,y=10)
-
-        id= Label(root1,text='Student ID',font=("Times", "20"),fg='white',bg='#EC7063')
-        id.place(x=50,y=70)
-
-        fname= Label(root1,text='First name',font=("Times", "20"),fg='white',bg='#EC7063')
-        fname.place(x=50,y=110)
-
-        lname = Label(root1,text='Last name',font=("Times", "20"),fg='white',bg='#EC7063')
-        lname.place(x=50,y=150)
-
-        gender = Label(root1,text='Gender',font=("Times", "20"),fg='white',bg='#EC7063')
-        gender.place(x=50,y=190)
-
-        birthdate = Label(root1,text='Birth Date',font=("Times", "20"),fg='white',bg='#EC7063')
-        birthdate.place(x=50,y=230)
-
-        e_id = Entry(root1,width=20)
-        e_id.place(x=200,y=80)
-
-        e_fname = Entry(root1,width=20)
-        e_fname.place(x=200,y=120)
-
-        e_lname = Entry(root1,width=20)
-        e_lname.place(x=200,y=160)
-
-        gender = IntVar()
-        radiobutton_1 = Radiobutton(root1, text='Male', variable=gender, value=1, background = "#EC7063",
-                    foreground = "#000000", font = ("Times", 15, "bold"))
-        radiobutton_1.place(x=200, y=195)
-        radiobutton_2 = Radiobutton(root1, text='Female', variable=gender, value=2, background = "#EC7063",
-                    foreground = "#000000", font = ("Times", 15, "bold"))
-        radiobutton_2.place(x=280, y=195)
-
-        cal=DateEntry(root1,selectmode='day',textvariable=date1)
-        cal.place(x=200, y=240)
-
-        insertst_button1=Button(root1,text="Insert",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        insertst_button1.place(x=25,y=290)
-
-        deletest_button1=Button(root1,text="Delete",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        deletest_button1.place(x=145,y=290)
-
-        update_button1=Button(root1,text="Update",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        update_button1.place(x=265,y=290)
-
-
-        back_button=Button(root1,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root1.destroy(),select()])
+        back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),select()])
         back_button.place(x=410,y=15)
+    def insert():
+        #root.destroy()
+        root4= Tk()
+        root4.geometry("500x450")
+        root4.title("Student Enroll")
+        root4.configure(background="#EC7063")
+        root4.resizable(False,False)
+        studentdb_button=Button(root4,text="Student",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_in(1)])
+        studentdb_button.place(x=30,y=10)
+        studentdb_button=Button(root4,text="insturctor",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_in(2)])
+        studentdb_button.place(x=30,y=70)
+        studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_in(3)])
+        studentdb_button.place(x=30,y=130)
 
-    def course_db_control():
-        root.destroy()
-        root2= Tk()
-        #data2=StringVar(root2)
-        root2.geometry("500x400")
-        root2.title("Student Enroll")
-        root2.configure(background="#EC7063")
-        root2.resizable(False,False)
-        
-
-        head1=Label(root2,text='Courses Database',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
-        head1.place(x=30,y=10)
-
-        c_name= Label(root2,text='Course name',font=("Times", "20"),fg='white',bg='#EC7063')
-        c_name.place(x=50,y=70)
-
-        c_desc= Label(root2,text='Course description',font=("Times", "20"),fg='white',bg='#EC7063')
-        c_desc.place(x=50,y=110)
-
-        e_cname = Entry(root2,width=25)
-        e_cname.place(x=230,y=80)
-
-        e_cdesc = Text(root2,width=50,height=5)
-        e_cdesc.place(x=50,y=150)
-
-        insertst_button2=Button(root2,text="Insert",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        insertst_button2.place(x=25,y=290)
-
-        deletest_button2=Button(root2,text="Delete",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        deletest_button2.place(x=145,y=290)
-
-        update_button2=Button(root2,text="Update",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        update_button2.place(x=265,y=290)
-
-        back_button=Button(root2,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root2.destroy(),select()])
+        back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),select()])
         back_button.place(x=410,y=15)
-
-
-    def instructor_db_control():
-        root.destroy()
-        root3= Tk()
-        date2=StringVar(root3)
-        root3.geometry("500x450")
-        root3.title("Student Enroll")
-        root3.configure(background="#EC7063")
-        root3.resizable(False,False)
-        
-
-        head1=Label(root3,text='Instructor Database',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
-        head1.place(x=30,y=10)
-
-        id= Label(root3,text='Instructor ID',font=("Times", "20"),fg='white',bg='#EC7063')
-        id.place(x=50,y=70)
-
-        fname= Label(root3,text='First name',font=("Times", "20"),fg='white',bg='#EC7063')
-        fname.place(x=50,y=110)
-
-        lname = Label(root3,text='Last name',font=("Times", "20"),fg='white',bg='#EC7063')
-        lname.place(x=50,y=150)
-
-        gender = Label(root3,text='Gender',font=("Times", "20"),fg='white',bg='#EC7063')
-        gender.place(x=50,y=190)
-
-        birthdate = Label(root3,text='Birth Date',font=("Times", "20"),fg='white',bg='#EC7063')
-        birthdate.place(x=50,y=230)
-
-        status = Label(root3,text='Status',font=("Times", "20"),fg='white',bg='#EC7063')
-        status.place(x=50,y=270)
-
-        e_id = Entry(root3,width=20)
-        e_id.place(x=200,y=80)
-
-        e_fname = Entry(root3,width=20)
-        e_fname.place(x=200,y=120)
-
-        e_lname = Entry(root3,width=20)
-        e_lname.place(x=200,y=160)
-
-        gender = IntVar()
-        radiobutton_1 = Radiobutton(root3, text='Male', variable=gender, value=1, background = "#EC7063",
-                    foreground = "#000000", font = ("Times", 15, "bold"))
-        radiobutton_1.place(x=200, y=195)
-        radiobutton_2 = Radiobutton(root3, text='Female', variable=gender, value=2, background = "#EC7063",
-                    foreground = "#000000", font = ("Times", 15, "bold"))
-        radiobutton_2.place(x=280, y=195)
-
-        cal=DateEntry(root3,selectmode='day',textvariable=date2)
-        cal.place(x=200, y=240)
-
-        e_cdesc = Text(root3,width=35,height=5)
-        e_cdesc.place(x=200,y=270)
-
-        insertst_button3=Button(root3,text="Insert",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        insertst_button3.place(x=25,y=380)
-
-        deletest_button3=Button(root3,text="Delete",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        deletest_button3.place(x=145,y=380)
-
-        update_button3=Button(root3,text="Update",width=8,font=("Times", "15"),fg='#EC7063',bg='#FDEBD0')
-        update_button3.place(x=265,y=380)
-
-        back_button=Button(root3,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root3.destroy(),select()])
+    
+    def update():
+        #root.destroy()
+        root4= Tk()
+        root4.geometry("500x450")
+        root4.title("Student Enroll")
+        root4.configure(background="#EC7063")
+        root4.resizable(False,False)
+        studentdb_button=Button(root4,text="Student",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(1)])
+        studentdb_button.place(x=30,y=10) 
+        studentdb_button=Button(root4,text="insturctor",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(2)])
+        studentdb_button.place(x=30,y=70)
+        #studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(3)])
+         #studentdb_button.place(x=30,y=110)
+        back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),select()])
         back_button.place(x=410,y=15)
+    def enroll():
+        #root.destroy()
+        root4= Tk()
+        root4.geometry("500x450")
+        root4.title("Student Enroll")
+        root4.configure(background="#EC7063")
+        root4.resizable(False,False)
+        studentdb_button=Button(root4,text="insert",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),insert_E()])
+        studentdb_button.place(x=30,y=10)
+        studentdb_button=Button(root4,text="delete",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),delete_E()])
+        studentdb_button.place(x=30,y=70)
 
+        back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),select()])
+        back_button.place(x=410,y=15)
+        def insert_E():
+           enrol= tk.Tk()
+           enrol.title("Enrolment Window")
+           enrol.geometry("500x400")
+           enrol.configure(background="#EC7063")
+           enrol.resizable(False,False)
+           ST_ID=tk.Label(enrol,text='Student_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           ST_ID.place(x=10,y=90)
+           st_entry=tk.Entry(enrol,width=30)
+           st_entry.place(x=170, y=99)
 
+           cor_ID=tk.Label(enrol,text='Course_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           cor_ID.place(x=10,y=130)
+           cor_entry=tk.Entry(enrol,width=30)
+           cor_entry.place(x=170, y=139)
+    
+           date=tk.Label(enrol,text='Date',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           date.place(x=10,y=170)
+           date=tk.Entry(enrol,width=30)
+           date.place(x=170, y=179)
 
+           year=tk.Label(enrol,text='Year',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           year.place(x=10,y=210)
+           year=tk.Entry(enrol,width=30)
+           year.place(x=170, y=219)
+
+           en_sub=tk.Button(enrol,text='Enroll',width=10,font=30,fg='#EC7063',bg='#FDEBD0')
+           en_sub.place(x=170,y=260)
+
+           back_button=Button(enrol,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[enrol.destroy(),enroll()])
+           back_button.place(x=410,y=15)
+           
+           
+    
+           enrol.mainloop()
+        def delete_E():
+           enrol= tk.Tk()
+           enrol.title("Enrolment Window")
+           enrol.geometry("500x400")
+           enrol.configure(background="#EC7063")
+           enrol.resizable(False,False)
+           ST_ID=tk.Label(enrol,text='Student_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           ST_ID.place(x=10,y=90)
+           st_entry=tk.Entry(enrol,width=30)
+           st_entry.place(x=170, y=99)
+
+           cor_ID=tk.Label(enrol,text='Course_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           cor_ID.place(x=10,y=130)
+           cor_entry=tk.Entry(enrol,width=30)
+           cor_entry.place(x=170, y=139)
+           en_sub=tk.Button(enrol,text='delete',width=10,font=30,fg='#EC7063',bg='#FDEBD0')
+           en_sub.place(x=170,y=260)
+
+           back_button=Button(enrol,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[enrol.destroy(),enroll()])
+           back_button.place(x=410,y=15)
+    
+           enrol.mainloop()
+    def teach():
+        #root.destroy()
+        root4= Tk()
+        root4.geometry("500x450")
+        root4.title("Student Enroll")
+        root4.configure(background="#EC7063")
+        root4.resizable(False,False)
+        studentdb_button=Button(root4,text="insert",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),insert_t()])
+        studentdb_button.place(x=30,y=10)
+        studentdb_button=Button(root4,text="delete",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),delete_t()])
+        studentdb_button.place(x=30,y=70)
+
+        back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),select()])
+        back_button.place(x=410,y=15)
+        def insert_t():
+           enrol= tk.Tk()
+           enrol.title("Enrolment Window")
+           enrol.geometry("500x400")
+           enrol.configure(background="#EC7063")
+           enrol.resizable(False,False)
+           ins_ID=tk.Label(enrol,text='instructor_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           ins_ID.place(x=10,y=90)
+           ins_entry=tk.Entry(enrol,width=30)
+           ins_entry.place(x=190, y=99)
+
+           cor_ID=tk.Label(enrol,text='Course_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           cor_ID.place(x=10,y=130)
+           cor_entry=tk.Entry(enrol,width=30)
+           cor_entry.place(x=190, y=139)
+           en_sub=tk.Button(enrol,text='Enroll',width=10,font=30,fg='#EC7063',bg='#FDEBD0')
+           en_sub.place(x=170,y=260)
+
+           back_button=Button(enrol,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[enrol.destroy(),teach()])
+           back_button.place(x=410,y=15)
+    
+           enrol.mainloop()
+        def delete_t():
+           enrol= tk.Tk()
+           enrol.title("Enrolment Window")
+           enrol.geometry("500x400")
+           enrol.configure(background="#EC7063")
+           enrol.resizable(False,False)
+           ins_ID=tk.Label(enrol,text='instructor_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           ins_ID.place(x=10,y=90)
+           ins_entry=tk.Entry(enrol,width=30)
+           ins_entry.place(x=190, y=99)
+
+           cor_ID=tk.Label(enrol,text='Course_ID',font=('monospace',20,'bold'),fg='#FDEBD0',bg='#EC7063')
+           cor_ID.place(x=10,y=130)
+           cor_entry=tk.Entry(enrol,width=30)
+           cor_entry.place(x=190, y=139)
+           en_sub=tk.Button(enrol,text='delete',width=10,font=30,fg='#EC7063',bg='#FDEBD0')
+           en_sub.place(x=170,y=260)
+
+           back_button=Button(enrol,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[enrol.destroy(),enroll()])
+           back_button.place(x=410,y=15)
+    
+           enrol.mainloop()
     head=Label(root,text='Select Database',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
     head.place(x=30,y=10)
 
-    studentdb_button=Button(root,text="Student Database",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=student_db_control)
-    studentdb_button.place(x=50,y=70)
-
-    coursedb_button=Button(root,text="Courses Database",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=course_db_control)
-    coursedb_button.place(x=50,y=130)
-
-    instructordb_button=Button(root,text="Instructors Database",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=instructor_db_control)
-    instructordb_button.place(x=50,y=190)
-
-
+    in_button=Button(root,text="insert",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root.destroy(),insert()])
+    in_button.place(x=50,y=70)
+    del_button=Button(root,text="delete",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root.destroy(),delete()])
+    del_button.place(x=50,y=130)
+    update_button=Button(root,text="update",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root.destroy(),update()])
+    update_button.place(x=50,y=190)
+    enrol_button=Button(root,text="enrol",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root.destroy(),enroll()])
+    enrol_button.place(x=50,y=250)
+    teach_button=Button(root,text="TEACH",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root.destroy(),teach()])
+    teach_button.place(x=50,y=310) 
 
 
     root.mainloop()

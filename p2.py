@@ -1,4 +1,3 @@
-import mysql.connector
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
@@ -6,7 +5,6 @@ from PIL import Image , ImageTk
 from PIL import Image, ImageFilter
 from tkinter import messagebox as messagebox
 import fun
-
 
 home=tk.Tk()
 home.geometry('800x300+300+300')
