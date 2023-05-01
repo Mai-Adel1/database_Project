@@ -176,4 +176,44 @@ def instructor_db_control():
         # back_button=Button(root3,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root3.destroy(),fun.emp_fun()])
         # back_button.place(x=410,y=15)
 
-       
+
+def course_db_control():
+        root4= Tk()
+        date1=StringVar(root4)
+        root4.geometry("500x400")
+        root4.title("Student Enroll")
+        root4.configure(background="#EC7063")
+        root4.resizable(False,False)
+        
+
+        head1=Label(root4,text='Courses Database Update',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
+        head1.place(x=30,y=10)
+
+
+        id= Label(root4,text='Enter Course Name',font=("Times", "20"),fg='white',bg='#EC7063')
+        id.place(x=50,y=70)
+
+        id_entry=tk.Entry(root4,width=30)
+        id_entry.place(x=290, y=80)
+
+        q=Label(root4,text='What do you want Update? ',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
+        q.place(x=50,y=150)
+
+
+        choices = IntVar()
+        radiobutton_1 = Radiobutton(root4, text='Course Name', variable=choices, value=1, background = "#EC7063",
+                    foreground = "#000000", font = ("Times", 15, "bold"),command=lambda:[root4.destroy(),fun.cn_fun()])
+        radiobutton_1.place(x=200, y=190)
+        radiobutton_2 = Radiobutton(root4, text='Course ID', variable=choices, value=2, background = "#EC7063",
+                    foreground = "#000000", font = ("Times", 15, "bold"),command=lambda:[root4.destroy(),fun.cid_fun()])
+        radiobutton_2.place(x=200, y=230)
+        # radiobutton_3 = Radiobutton(root4, text='age', variable=choices, value=3, background = "#EC7063",
+        #             foreground = "#000000", font = ("Times", 15, "bold"),command=lambda:[root4.destroy(),fun.age_fun()])
+        # radiobutton_3.place(x=200, y=270)
+        # radiobutton_4 = Radiobutton(root4, text='Gender', variable=choices, value=4, background = "#EC7063",
+        #             foreground = "#000000", font = ("Times", 15, "bold"),command=lambda:[root4.destroy(),fun.gen_fun()])
+        # radiobutton_4.place(x=200, y=310)
+
+        back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),fun.emp_fun()])
+        back_button.place(x=410,y=15)
+        root4.mainloop()

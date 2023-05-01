@@ -180,3 +180,35 @@ def geni_fun():
    b1g= tk.Button(g, text='Update',width=16,font=30, fg='#EC7063',bg='#FDEBD0')
    b1g.place(x=120,y=100)
    
+
+   ##############################3
+
+def cn_fun():
+
+   f= Tk()
+   f.title("update Course Name")
+   f.geometry("400x200")
+   f.configure(background="#EC7063")
+   f.resizable(False,False)
+   fl=tk.Label(f,text='Course Name',font=('monospace',20,'bold'),fg='white',bg='#EC7063')
+   fl.place(x=40,y=10)
+   fn_entry=tk.Entry(f,width=40)
+   fn_entry.place(x=120,y=50)
+   b1f= tk.Button(f, text='Update',width=16,font=30, fg='#EC7063',bg='#FDEBD0')
+   b1f.place(x=120,y=100)
+   f.mainloop()
+
+
+
+def cid_fun():
+   l= Tk()
+   l.title("Update Course ID")
+   l.geometry("400x200")
+   l.configure(background="#EC7063")
+   ll=tk.Label(l,text='Course ID',font=('monospace',20,'bold'),fg='white',bg='#EC7063')
+   ll.place(x=40,y=10)
+   l.resizable(False,False)
+   ln_entry=tk.Entry(l,width=30)
+   ln_entry.place(x=120,y=50)
+   b1l= tk.Button(l, text='Update',width=16,font=30, fg='#EC7063',bg='#FDEBD0')
+   b1l.place(x=120,y=100)

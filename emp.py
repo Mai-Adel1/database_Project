@@ -53,7 +53,7 @@ def select():
         root4.configure(background="#EC7063")
         root4.resizable(False,False)
         studentdb_button=Button(root4,text="Student",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(1)])
-        studentdb_button.place(x=30,y=10) 
+        studentdb_button.place(x=30,y=10)
         studentdb_button=Button(root4,text="insturctor",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(2)])
         studentdb_button.place(x=30,y=70)
         studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(3)])
