@@ -56,8 +56,8 @@ def select():
         studentdb_button.place(x=30,y=10) 
         studentdb_button=Button(root4,text="insturctor",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(2)])
         studentdb_button.place(x=30,y=70)
-        #studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(3)])
-         #studentdb_button.place(x=30,y=110)
+        studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_up(3)])
+        studentdb_button.place(x=30,y=130)
         back_button=Button(root4,text="Back",width=5,font=("Times", "15"),fg='black',bg='#EC7063',activeforeground="#EC7063",command=lambda:[root4.destroy(),select()])
         back_button.place(x=410,y=15)
     def enroll():
