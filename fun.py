@@ -212,3 +212,12 @@ def cid_fun():
    ln_entry.place(x=120,y=50)
    b1l= tk.Button(l, text='Update',width=16,font=30, fg='#EC7063',bg='#FDEBD0')
    b1l.place(x=120,y=100)
+#############################################################################################
+def emp_search(x):
+   import empsearch
+   if x==2:
+     empsearch.student_db_control() 
+   elif x==3:
+      empsearch.instructor_db_control()
+   elif x==4:
+      empsearch.course_db_control()
