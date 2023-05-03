@@ -189,6 +189,21 @@ def select():
            back_button.place(x=410,y=15)
     
            enrol.mainloop()
+     def search():
+             root.destroy()
+             root4= Tk()
+             root4.geometry("500x450")
+             root4.title("Student Enroll")
+             root4.configure(background="#EC7063")
+             root4.resizable(False,False)
+             studentdb_button=Button(root4,text="show all",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_search(1)])
+             studentdb_button.place(x=30,y=10)
+             studentdb_button=Button(root4,text="Student",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_search(2)])
+             studentdb_button.place(x=30,y=70)
+             studentdb_button=Button(root4,text="insturctor",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_search(3)])
+             studentdb_button.place(x=30,y=130)
+             studentdb_button=Button(root4,text="courses",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root4.destroy(),fun.emp_search(4)])
+             studentdb_button.place(x=30,y=190)
     head=Label(root,text='Select Database',font=("Times", "25", "bold"),fg='white',bg='#EC7063')
     head.place(x=30,y=10)
 
@@ -202,7 +217,8 @@ def select():
     enrol_button.place(x=50,y=250)
     teach_button=Button(root,text="TEACH",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=lambda:[root.destroy(),teach()])
     teach_button.place(x=50,y=310) 
-
+    search_button=Button(root,text="search",width=15,font=("Times", "20"),fg='#EC7063',bg='#FDEBD0',command=search)
+    search_button.place(x=50,y=310) 
 
     root.mainloop()
 
