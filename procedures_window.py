@@ -6,6 +6,8 @@ from procedures import *
 from empsearch import search_win
 import home
 
+def contains_number(string):
+    return any(char.isdigit() for char in string)
 
 def emp_win(window, back):
     Label1 = tk.Label(text='Select database ', **label_txt)
@@ -102,8 +104,40 @@ def insert(window,name):
     
             cal=DateEntry(window,selectmode='day',textvariable=date)
             cal.place(x=200, y=200)
+        
+        error_label = tk.Label(window, text="", bg='#EC7063')
+        error_label.place(x=50,y=270)
+        def check():
+            if name == 'Courses':
+                try:
+                        name_c = e_name.get()
+                        desc_c = e_cdesc.get("1.0","end-1c")
+                        insert_error_hand_courses(name,name_c,desc_c)
+                        if contains_number(name_c):
+                           raise ValueError("Please enter a string value")
+                except ValueError as e:
+                        error_label.config(text=e)
+                except Exception as e:
+                        error_label.config(text=e)
+                else:
+                        error_label.config(text="insertion is done successfully")
+            else:
+                try:
+                 fname_si = e_fname.get()
+                 lname_si = e_lname.get()
+                 birth_si = cal.get_date()
+                 gend_si = gender
+                 insert_error_hand_si(name,fname_si,lname_si,birth_si,gend_si)
+                 if contains_number(fname_si) or contains_number(lname_si) :
+                           raise ValueError("Please enter a string value")
+                except ValueError as e:
+                 error_label.config(text=e)
+                except Exception as E:
+                  error_label.config(text=E)
+                else:
+                  error_label.config(text="insertion is done succesfully")
     
-        insertst_button1=tk.Button(window,text="Insert",**nrom_btn)
+        insertst_button1=tk.Button(window,text="Insert",**nrom_btn,command=check)
         insertst_button1.place(x=25,y=240)
         insertback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),proc_win(window,home,name)])
         insertback_button.place(x=400,y=20)
@@ -216,7 +250,29 @@ def enroll_course(window):
     year.place(x=10,y=210)
     year=tk.Entry(window,width=30)
     year.place(x=170, y=219)
-    en_sub=tk.Button(window,text='Enroll',**nrom_btn)
+    
+
+    error_label = tk.Label(window, text="", bg='#EC7063')
+    error_label.place(x=50,y=290)
+   
+    def check():
+        try:
+         studentID = int(st_entry.get())
+         courseID = int(cor_entry.get())
+         Date = int(date.get())  
+         Year = int(year.get())
+
+         insert_error_hand_enroll('Enroll', studentID,courseID,Date,Year)       
+
+        except ValueError:
+           error_label.config(text="please enter int value")
+
+        except Exception as E:
+           error_label.config(text=E)
+        else:
+           error_label.config(text="Enrollmaent is done succesfully")
+
+    en_sub=tk.Button(window,text='Enroll',**nrom_btn,command=check)
     en_sub.place(x=170,y=260)
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
@@ -271,7 +327,27 @@ def insert_t(window):
     cor_ID.place(x=10,y=130)
     cor_entry=tk.Entry(window,width=30)
     cor_entry.place(x=190, y=139)
-    en_sub=tk.Button(window,text='Enroll',**label_txt)
+
+    error_label = tk.Label(window, text="", bg='#EC7063')
+    error_label.place(x=50,y=290)
+   
+    def check():
+        try:
+         instructorID = int(ins_entry.get())
+         courseID = int(cor_entry.get())
+         
+
+         insert_error_hand_enroll_teach('Teach', instructorID, courseID)       
+
+        except ValueError:
+           error_label.config(text="please enter int value")
+
+        except Exception as E:
+           error_label.config(text=E)
+        else:
+           error_label.config(text="Enrollmaent is done succesfully")
+
+    en_sub=tk.Button(window,text='Enroll',**label_txt,command=check)
     en_sub.place(x=170,y=260)
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
