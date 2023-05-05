@@ -2,7 +2,13 @@ from support import clear_window
 from setting import *
 import tkinter as tk
 from tkcalendar import DateEntry
-
+import pymysql
+conn = pymysql.connect(
+    host='database-1.cfo6vewprtg5.eu-north-1.rds.amazonaws.com',
+    user='admin',
+    password="0123456789",
+    db="student_enroll")
+cur = conn.cursor()
 def insert(window,name):
         
         head=tk.Label(window,text="Insert "+name,**label_txt)
@@ -98,6 +104,19 @@ def update_field(window,filed):
         update_btn=tk.Button(window,text="Delete",**nrom_btn)
         update_btn.place(x=25,y=150)
 
+
+def delt_error_hand(table_name, id):
+   if (table_name == "Student"):
+      coulm = "Studentid"
+   elif table_name == "Instructor":
+      coulm = "I_id"
+   else:
+      coulm = "C_id"
+   sql = '''DELETE FROM {} WHERE {}= %s''' .format(table_name, coulm)
+   cur.execute(sql, (id))
+   conn.commit()
+   conn.close()
+
 def delete(window ,name):
         head=tk.Label(window,text='Delete' + name,**label_txt)
         head.place(x=30,y=10)
@@ -106,7 +125,21 @@ def delete(window ,name):
         id.place(x=50,y=70)
         e_id = tk.Entry(window,width=20)
         e_id.place(x=50,y=100)
-        del_btn=tk.Button(window,text="Delete",**nrom_btn)
+        error_label = tk.Label(window, text="", bg='#EC7063')
+        error_label.place(x=50,y=130)
+        def check():
+         try:
+          ce = int(e_id.get())
+          delt_error_hand(name, ce)
+         except ValueError:
+           error_label.config(text="please enter int value")
+
+         except Exception as E:
+           error_label.config(text=E)
+         else:
+           error_label.config(text="deletion is done succesfully")
+
+        del_btn=tk.Button(window,text="Delete",**nrom_btn,command=check)
         del_btn.place(x=25,y=150)
 
 def std_course_win(window):
@@ -135,8 +168,19 @@ def enroll_course(window):
    en_sub=tk.Button(window,text='Enroll',**nrom_btn)
    en_sub.place(x=170,y=260)
 
-def delete_course(window):
-         
+
+def delt_error_hand_enroll(name, co_id, stAndIns_id):
+   if name == "Enroll":
+       SAndI_id="S_id"
+   elif name== "Teach":
+       SAndI_id="I_id"
+          
+   sql = '''DELETE FROM {} WHERE {}= %s and {}= %s''' .format(name, SAndI_id , "C_id")
+   cur.execute(sql, (stAndIns_id, co_id))
+   conn.commit()
+   conn.close()
+
+def delete_course(window):     
     ST_ID=tk.Label(window,text='Student ID',**nrom_btn)
     ST_ID.place(x=10,y=90)
     st_entry=tk.Entry(window,width=30)
@@ -146,7 +190,22 @@ def delete_course(window):
     cor_ID.place(x=10,y=130)
     cor_entry=tk.Entry(window,width=30)
     cor_entry.place(x=170, y=139)
-    en_sub=tk.Button(window,text='delete',**nrom_btn)
+    error_label = tk.Label(window, text="", bg='#EC7063')
+    error_label.place(x=50, y=130)
+
+    def check():
+        try:
+          co_id = int(cor_entry.get())
+          st_id= int(st_entry.get())
+          delt_error_hand_enroll('Enroll', co_id,st_id)
+        except ValueError:
+           error_label.config(text="please enter int value")
+
+        except Exception as E:
+           error_label.config(text=E)
+        else:
+           error_label.config(text="deletion is done succesfully")
+    en_sub=tk.Button(window,text='delete',**nrom_btn,command=check)
     en_sub.place(x=170,y=260)
 
 def ins_course_win(window):
@@ -177,7 +236,22 @@ def delete_t(window):
    cor_ID.place(x=10,y=130)
    cor_entry=tk.Entry(window,width=30)
    cor_entry.place(x=190, y=139)
-   en_sub=tk.Button(window,text='delete',**nrom_btn)
+   error_label = tk.Label(window, text="", bg='#EC7063')
+   error_label.place(x=50, y=150)
+
+   def check():
+       try:
+          co_id = int(cor_entry.get())
+          ins_id = int(ins_entry.get())
+          delt_error_hand_enroll('Teach', co_id, ins_id)
+       except ValueError:
+           error_label.config(text="please enter int value")
+
+       except Exception as E:
+           error_label.config(text=E)
+       else:
+           error_label.config(text="deletion is done succesfully")
+   en_sub=tk.Button(window,text='delete',**nrom_btn,command=check)
    en_sub.place(x=170,y=260)
 
 def add_grade(window):
@@ -204,5 +278,6 @@ def add_grade(window):
     
     year=tk.Entry(window,width=30)
     year.place(x=190, y=210)
-    
+#################################################################################
+
     
