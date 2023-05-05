@@ -258,6 +258,8 @@ def ins_course_win(window):
     studentdb_button.place(x=30,y=10)
     studentdb_button=tk.Button(window,text="delete",**nrom_btn,command=lambda:[clear_window(window),delete_t(window)])
     studentdb_button.place(x=30,y=70)
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
     
 def insert_t(window):
     ins_ID=tk.Label(window,text='instructor ID',**label_txt)
