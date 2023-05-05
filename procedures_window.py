@@ -4,6 +4,7 @@ import tkinter as tk
 from tkcalendar import DateEntry
 from procedures import *
 from empsearch import search_win
+import home
 
 
 def emp_win(window, back):
@@ -21,8 +22,8 @@ def emp_win(window, back):
     studentdb_button = tk.Button(window, text="Search", **nrom_btn,
                                  command=lambda: [clear_window(window), search_win(window)])
     studentdb_button.place(x=600, y=70)
-    back_button = tk.Button(window, text="Back", **back_btn,
-                            command=lambda: [clear_window(window), back(window)])
+    back_button = tk.Button(window, text="Back", **back_btn
+                            ,command=lambda:[clear_window(window),back(window)])
     back_button.place(x=410, y=15)
 
 
@@ -104,7 +105,7 @@ def insert(window,name):
     
         insertst_button1=tk.Button(window,text="Insert",**nrom_btn)
         insertst_button1.place(x=25,y=240)
-        insertback_button=tk.Button(window,text="Back",**nrom_btn)
+        insertback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
         insertback_button.place(x=400,y=20)
 
 
@@ -120,7 +121,7 @@ def update(window,name):
         id_entry=tk.Entry(window,width=30)
         id_entry.place(x=250, y=80)
 
-        updateback_button=tk.Button(window,text="Back",**nrom_btn)
+        updateback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
         updateback_button.place(x=500,y=20)
 
         q=tk.Label(window,text='choose Field',**label_txt)
@@ -194,7 +195,7 @@ def std_course_win(window):
     studentdb_button=tk.Button(window,text="delete",**nrom_btn,command=lambda:[clear_window(window),delete_course(window)])
     studentdb_button.place(x=30,y=70)
 
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
         
 
@@ -217,7 +218,7 @@ def enroll_course(window):
     year.place(x=170, y=219)
     en_sub=tk.Button(window,text='Enroll',**nrom_btn)
     en_sub.place(x=170,y=260)
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
 
 
@@ -235,7 +236,7 @@ def delete_course(window):
     cor_entry.place(x=170, y=139)
     error_label = tk.Label(window, text="", bg='#EC7063')
     error_label.place(x=50, y=130)
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
 
     def check():
@@ -258,7 +259,7 @@ def ins_course_win(window):
     studentdb_button.place(x=30,y=10)
     studentdb_button=tk.Button(window,text="delete",**nrom_btn,command=lambda:[clear_window(window),delete_t(window)])
     studentdb_button.place(x=30,y=70)
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
     
 def insert_t(window):
@@ -272,7 +273,7 @@ def insert_t(window):
     cor_entry.place(x=190, y=139)
     en_sub=tk.Button(window,text='Enroll',**label_txt)
     en_sub.place(x=170,y=260)
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
 
 
@@ -287,7 +288,7 @@ def delete_t(window):
     cor_entry.place(x=190, y=139)
     error_label = tk.Label(window, text="", bg='#EC7063')
     error_label.place(x=50, y=150)
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
 
     def check():
@@ -330,7 +331,7 @@ def add_grade(window):
     year=tk.Entry(window,width=30)
     year.place(x=190, y=210)
 
-    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
 #################################################################################
 
