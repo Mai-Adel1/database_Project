@@ -1,6 +1,6 @@
 import tkinter as tk
 from setting import *
-from employe import emp_win
+from procedures_window import emp_win
 from support import clear_window
 
 def home(window):
