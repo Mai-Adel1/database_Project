@@ -23,7 +23,7 @@ def emp_win(window, back):
                                  command=lambda: [clear_window(window), search_win(window)])
     studentdb_button.place(x=600, y=70)
     back_button = tk.Button(window, text="Back", **back_btn
-                            ,command=lambda:[clear_window(window),home])
+                            ,command=lambda:[clear_window(window),home(window)])
     back_button.place(x=410, y=15)
 
 
@@ -105,7 +105,7 @@ def insert(window,name):
     
         insertst_button1=tk.Button(window,text="Insert",**nrom_btn)
         insertst_button1.place(x=25,y=240)
-        insertback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
+        insertback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),proc_win(window,home,name)])
         insertback_button.place(x=400,y=20)
 
 
@@ -121,7 +121,7 @@ def update(window,name):
         id_entry=tk.Entry(window,width=30)
         id_entry.place(x=250, y=80)
 
-        updateback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
+        updateback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),proc_win(window,home,name)])
         updateback_button.place(x=500,y=20)
 
         q=tk.Label(window,text='choose Field',**label_txt)
@@ -170,7 +170,7 @@ def delete(window ,name):
         id.place(x=50,y=70)
         e_id = tk.Entry(window,width=20)
         e_id.place(x=50,y=100)
-        deleteback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
+        deleteback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),proc_win(window,home,name)])
         deleteback_button.place(x=500,y=20)
         error_label = tk.Label(window, text="", bg='#EC7063')
         error_label.place(x=50,y=130)
