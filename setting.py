@@ -18,7 +18,7 @@ nrom_btn = {
 back_btn = {
 
     "font":"('monospace',20,'bold')",
-    "fg":"black",
+    "fg":"white",
     "bg":"#EC7063", 
     "width":"5",
     "activeforeground":"#EC7063"
