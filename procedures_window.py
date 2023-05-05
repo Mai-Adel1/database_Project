@@ -35,7 +35,7 @@ def proc_win(window, back, name):
                                  command=lambda: [clear_window(window), delete(window, name)])
     studentdb_button.place(x=30, y=190)
     back_button = tk.Button(window, text="home", **back_btn,
-                            command=lambda: [clear_window(window), back(window, name)])
+                            command=lambda: [clear_window(window), back(window)])
     back_button.place(x=410, y=15)
     if name == "Student":
         studentdb_button = tk.Button(window, text="Update", **nrom_btn,
@@ -104,6 +104,10 @@ def insert(window,name):
     
         insertst_button1=tk.Button(window,text="Insert",**nrom_btn)
         insertst_button1.place(x=25,y=240)
+        insertback_button=tk.Button(window,text="Back",**nrom_btn)
+        insertback_button.place(x=400,y=20)
+
+
 
 def update(window,name):
         flag = False
@@ -115,6 +119,9 @@ def update(window,name):
 
         id_entry=tk.Entry(window,width=30)
         id_entry.place(x=250, y=80)
+
+        updateback_button=tk.Button(window,text="Back",**nrom_btn)
+        updateback_button.place(x=500,y=20)
 
         q=tk.Label(window,text='choose Field',**label_txt)
         q.place(x=50,y=150)
@@ -150,7 +157,7 @@ def update_field(window,filed):
             widgets_list.append(l_field)
         update_btn=tk.Button(window,text="Delete",**nrom_btn)
         update_btn.place(x=25,y=150)
-
+        
 
 
 
@@ -162,6 +169,8 @@ def delete(window ,name):
         id.place(x=50,y=70)
         e_id = tk.Entry(window,width=20)
         e_id.place(x=50,y=100)
+        deleteback_button=tk.Button(window,text="Back",**nrom_btn)
+        deleteback_button.place(x=500,y=20)
         error_label = tk.Label(window, text="", bg='#EC7063')
         error_label.place(x=50,y=130)
         def check():
@@ -184,26 +193,32 @@ def std_course_win(window):
     studentdb_button.place(x=30,y=10)
     studentdb_button=tk.Button(window,text="delete",**nrom_btn,command=lambda:[clear_window(window),delete_course(window)])
     studentdb_button.place(x=30,y=70)
+
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
         
+
 def enroll_course(window):
-   ST_ID=tk.Label(window,text='Student ID',**label_txt)
-   ST_ID.place(x=10,y=90)
-   st_entry=tk.Entry(window,width=30)
-   st_entry.place(x=170, y=99)
-   cor_ID=tk.Label(window,text='Course ID',**label_txt)
-   cor_ID.place(x=10,y=130)
-   cor_entry=tk.Entry(window,width=30)
-   cor_entry.place(x=170, y=139)
-   date=tk.Label(window,text='Date',**label_txt)
-   date.place(x=10,y=170)
-   date=tk.Entry(window,width=30)
-   date.place(x=170, y=179)
-   year=tk.Label(window,text='Year',**label_txt)
-   year.place(x=10,y=210)
-   year=tk.Entry(window,width=30)
-   year.place(x=170, y=219)
-   en_sub=tk.Button(window,text='Enroll',**nrom_btn)
-   en_sub.place(x=170,y=260)
+    ST_ID=tk.Label(window,text='Student ID',**label_txt)
+    ST_ID.place(x=10,y=90)
+    st_entry=tk.Entry(window,width=30)
+    st_entry.place(x=170, y=99)
+    cor_ID=tk.Label(window,text='Course ID',**label_txt)
+    cor_ID.place(x=10,y=130)
+    cor_entry=tk.Entry(window,width=30)
+    cor_entry.place(x=170, y=139)
+    date=tk.Label(window,text='Date',**label_txt)
+    date.place(x=10,y=170)
+    date=tk.Entry(window,width=30)
+    date.place(x=170, y=179)
+    year=tk.Label(window,text='Year',**label_txt)
+    year.place(x=10,y=210)
+    year=tk.Entry(window,width=30)
+    year.place(x=170, y=219)
+    en_sub=tk.Button(window,text='Enroll',**nrom_btn)
+    en_sub.place(x=170,y=260)
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
 
 
 
@@ -220,6 +235,8 @@ def delete_course(window):
     cor_entry.place(x=170, y=139)
     error_label = tk.Label(window, text="", bg='#EC7063')
     error_label.place(x=50, y=130)
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
 
     def check():
         try:
@@ -243,44 +260,48 @@ def ins_course_win(window):
     studentdb_button.place(x=30,y=70)
     
 def insert_t(window):
-   ins_ID=tk.Label(window,text='instructor ID',**label_txt)
-   ins_ID.place(x=10,y=90)
-   ins_entry=tk.Entry(window,width=30)
-   ins_entry.place(x=190, y=99)
-   cor_ID=tk.Label(window,text='Course ID',**label_txt)
-   cor_ID.place(x=10,y=130)
-   cor_entry=tk.Entry(window,width=30)
-   cor_entry.place(x=190, y=139)
-   en_sub=tk.Button(window,text='Enroll',**label_txt)
-   en_sub.place(x=170,y=260)
+    ins_ID=tk.Label(window,text='instructor ID',**label_txt)
+    ins_ID.place(x=10,y=90)
+    ins_entry=tk.Entry(window,width=30)
+    ins_entry.place(x=190, y=99)
+    cor_ID=tk.Label(window,text='Course ID',**label_txt)
+    cor_ID.place(x=10,y=130)
+    cor_entry=tk.Entry(window,width=30)
+    cor_entry.place(x=190, y=139)
+    en_sub=tk.Button(window,text='Enroll',**label_txt)
+    en_sub.place(x=170,y=260)
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
 
 
 def delete_t(window):
-   ins_ID=tk.Label(window,text='instructor ID',**label_txt)
-   ins_ID.place(x=10,y=90)
-   ins_entry=tk.Entry(window,width=30)
-   ins_entry.place(x=190, y=99)
-   cor_ID=tk.Label(window,text='Course ID',**label_txt)
-   cor_ID.place(x=10,y=130)
-   cor_entry=tk.Entry(window,width=30)
-   cor_entry.place(x=190, y=139)
-   error_label = tk.Label(window, text="", bg='#EC7063')
-   error_label.place(x=50, y=150)
+    ins_ID=tk.Label(window,text='instructor ID',**label_txt)
+    ins_ID.place(x=10,y=90)
+    ins_entry=tk.Entry(window,width=30)
+    ins_entry.place(x=190, y=99)
+    cor_ID=tk.Label(window,text='Course ID',**label_txt)
+    cor_ID.place(x=10,y=130)
+    cor_entry=tk.Entry(window,width=30)
+    cor_entry.place(x=190, y=139)
+    error_label = tk.Label(window, text="", bg='#EC7063')
+    error_label.place(x=50, y=150)
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
 
-   def check():
-       try:
-          co_id = int(cor_entry.get())
-          ins_id = int(ins_entry.get())
-          delt_error_hand_enroll('Teach', co_id, ins_id)
-       except ValueError:
-           error_label.config(text="please enter int value")
+    def check():
+        try:
+            co_id = int(cor_entry.get())
+            ins_id = int(ins_entry.get())
+            delt_error_hand_enroll('Teach', co_id, ins_id)
+        except ValueError:
+            error_label.config(text="please enter int value")
 
-       except Exception as E:
-           error_label.config(text=E)
-       else:
-           error_label.config(text="deletion is done succesfully")
-   en_sub=tk.Button(window,text='delete',**nrom_btn,command=check)
-   en_sub.place(x=170,y=260)
+        except Exception as E:
+            error_label.config(text=E)
+        else:
+            error_label.config(text="deletion is done succesfully")
+    en_sub=tk.Button(window,text='delete',**nrom_btn,command=check)
+    en_sub.place(x=170,y=260)
 
 def add_grade(window):
     ins_ID=tk.Label(window,text='ID',**label_txt)
@@ -306,6 +327,9 @@ def add_grade(window):
     
     year=tk.Entry(window,width=30)
     year.place(x=190, y=210)
+
+    back_button=tk.Button(window,text="Back",**nrom_btn)
+    back_button.place(x=500,y=20)
 #################################################################################
 
     
