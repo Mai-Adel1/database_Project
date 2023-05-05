@@ -77,3 +77,10 @@ def insert_error_hand_enroll_teach(table_name,inst_id,cour_id):
    cur.execute(sql, (inst_id,cour_id))
    conn.commit()
    conn.close()
+
+def insert_error_hand_degree(table_name,inst_id,deg,univer,year):
+
+   sql = '''INSERT INTO {} ({}, {}, {}, {}) VALUES (%s, %s,%s, %s) ''' .format(table_name, 'I_id','degree','univ','year')
+   cur.execute(sql, (inst_id,deg,univer,year))
+   conn.commit()
+   conn.close()

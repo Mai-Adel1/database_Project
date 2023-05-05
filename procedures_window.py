@@ -135,8 +135,8 @@ def insert(window,name):
                 except Exception as E:
                   error_label.config(text=E)
                 else:
-                  error_label.config(text="insertion is done succesfully")
-    
+                  error_label.config(text= "Your ID is %s " % cur.lastrowid) 
+                     
         insertst_button1=tk.Button(window,text="Insert",**nrom_btn,command=check)
         insertst_button1.place(x=25,y=240)
         insertback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),proc_win(window,home,name)])
@@ -406,6 +406,32 @@ def add_grade(window):
     
     year=tk.Entry(window,width=30)
     year.place(x=190, y=210)
+
+    error_label = tk.Label(window, text="", bg='#EC7063')
+    error_label.place(x=50, y=290)
+
+    def check():
+        try:
+         instructorID = int(ins_entry.get())
+         degree = degree_entry.get()
+         uni = univeristy_entry.get() 
+         Year = int(year.get())
+
+         insert_error_hand_degree('Degree', instructorID,degree,uni,Year)    
+            
+         if contains_number(degree) or contains_number(uni) :
+             raise ValueError ("please enter valid value")
+        except ValueError as e:
+           error_label.config(text=e)
+
+        except Exception as E:
+           error_label.config(text=E)
+        else:
+           error_label.config(text="Addition is done succesfully")
+
+
+    en_sub=tk.Button(window,text='Add',**nrom_btn,command=check)
+    en_sub.place(x=170,y=260)
 
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
