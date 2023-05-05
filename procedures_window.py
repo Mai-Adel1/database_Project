@@ -23,7 +23,7 @@ def emp_win(window, back):
                                  command=lambda: [clear_window(window), search_win(window)])
     studentdb_button.place(x=600, y=70)
     back_button = tk.Button(window, text="Back", **back_btn
-                            ,command=lambda:[clear_window(window),back(window)])
+                            ,command=lambda:[clear_window(window),home])
     back_button.place(x=410, y=15)
 
 
@@ -170,7 +170,7 @@ def delete(window ,name):
         id.place(x=50,y=70)
         e_id = tk.Entry(window,width=20)
         e_id.place(x=50,y=100)
-        deleteback_button=tk.Button(window,text="Back",**nrom_btn)
+        deleteback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
         deleteback_button.place(x=500,y=20)
         error_label = tk.Label(window, text="", bg='#EC7063')
         error_label.place(x=50,y=130)
