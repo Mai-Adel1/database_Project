@@ -23,7 +23,7 @@ def emp_win(window, back):
                                  command=lambda: [clear_window(window), search_win(window)])
     studentdb_button.place(x=600, y=70)
     back_button = tk.Button(window, text="Back", **back_btn
-                            ,command=lambda:[clear_window(window),home(window)])
+                            ,command=lambda:[clear_window(window),home.home(window)])
     back_button.place(x=410, y=15)
 
 
@@ -36,8 +36,11 @@ def proc_win(window, back, name):
                                  command=lambda: [clear_window(window), delete(window, name)])
     studentdb_button.place(x=30, y=190)
     back_button = tk.Button(window, text="home", **back_btn,
-                            command=lambda: [clear_window(window), back(window)])
+                            command=lambda: [clear_window(window), home.home(window)])
     back_button.place(x=410, y=15)
+    back_button = tk.Button(window, text="Back", **back_btn
+                            ,command=lambda:[clear_window(window),emp_win(window,home)])
+    back_button.place(x=610, y=15)
     if name == "Student":
         studentdb_button = tk.Button(window, text="Update", **nrom_btn,
                                      command=lambda: [clear_window(window), update(window, name)])
