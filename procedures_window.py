@@ -58,22 +58,24 @@ def proc_win(window, back, name):
         studentdb_button.place(x=30, y=310)
 
 def insert(window,name):
-        
+        values = []
         head=tk.Label(window,text="Insert "+name,**label_txt)
         head.place(x=30,y=10)
         if name == 'Courses':
-            fname= tk.Label(window,text='Name',**label_txt)
-            fname.place(x=50,y=70)
+            l_name= tk.Label(window,text='Name',**label_txt)
+            l_name.place(x=50,y=70)
 
-            fname= tk.Label(window,text='Description',**label_txt)
-            fname.place(x=50,y=150)
+            desc= tk.Label(window,text='Description',**label_txt)
+            desc.place(x=50,y=150)
 
             e_name = tk.Entry(window,width=20)
             e_name.place(x=200,y=70)
 
             e_cdesc = tk.Text(window,width=50,height=5)
             e_cdesc.place(x=200,y=150)
-            
+
+            insertst_button1=tk.Button(window,text="Course",**nrom_btn,command=lambda:[db_insert(name,tuple([e_name.get(),e_cdesc.get("1.0", tk.END)[:-1]]))])
+            insertst_button1.place(x=25,y=240)
         else:        
             
             fname= tk.Label(window,text='First name',**label_txt)
@@ -94,17 +96,18 @@ def insert(window,name):
             e_lname = tk.Entry(window,width=20)
             e_lname.place(x=200,y=120)
     
-            gender = tk.IntVar()
-            radiobutton_1 = tk.Radiobutton(window, text='Male', variable=gender, value=1,**radio_btn )
-            radiobutton_1.place(x=200, y=160)
-            radiobutton_2 = tk.Radiobutton(window, text='Female', variable=gender, value=2, **radio_btn)
-            radiobutton_2.place(x=280, y=160)
+            gender = tk.StringVar()
+            male = tk.Radiobutton(window, text='Male', variable=gender, value="M",**radio_btn )
+            male.place(x=200, y=160)
+            female = tk.Radiobutton(window, text='Female', variable=gender, value="F", **radio_btn)
+            female.place(x=280, y=160)
     
-            cal=DateEntry(window,selectmode='day',textvariable=date)
+            cal=DateEntry(window,selectmode='day',textvariable=date,date_pattern='yyyy/mm/dd')
             cal.place(x=200, y=200)
-    
-        insertst_button1=tk.Button(window,text="Insert",**nrom_btn)
-        insertst_button1.place(x=25,y=240)
+
+            
+            insertst_button1=tk.Button(window,text="Insert",**nrom_btn,command=lambda:[db_insert(name,tuple([e_fname.get(),e_lname.get(),gender.get(),cal.get()]))])
+            insertst_button1.place(x=25,y=240)
         insertback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
         insertback_button.place(x=400,y=20)
 
@@ -128,11 +131,11 @@ def update(window,name):
         q.place(x=50,y=150)
 
         choices = tk.IntVar()
-        fname_rd = tk.Radiobutton(window, text='First Name', variable=choices, value=1, **radio_btn,command=lambda:[update_field(window,'First Name',name,id_entry)])
+        fname_rd = tk.Radiobutton(window, text='First Name', variable=choices, value=1, **radio_btn,command=lambda:[update_field(window,'fname',name,id_entry)])
         fname_rd.place(x=200, y=190)
-        lname_rd = tk.Radiobutton(window, text='Last Name', variable=choices, value=2, **radio_btn,command=lambda:[update_field(window,'Last Name',name,id_entry)])
+        lname_rd = tk.Radiobutton(window, text='Last Name', variable=choices, value=2, **radio_btn,command=lambda:[update_field(window,'lname',name,id_entry)])
         lname_rd.place(x=200, y=230)
-        age_rd = tk.Radiobutton(window, text='Age', variable=choices, value=3, **radio_btn ,command=lambda:[update_field(window,"Age",name,id_entry)])
+        age_rd = tk.Radiobutton(window, text='Age', variable=choices, value=3, **radio_btn ,command=lambda:[update_field(window,"dob",name,id_entry)])
         age_rd.place(x=200, y=270)
 widgets_list =[]
 def update_field(window,filed,name,id):
@@ -140,12 +143,12 @@ def update_field(window,filed,name,id):
         for widgets in widgets_list:
             widgets.destroy()
 
-        if filed == 'Age':
+        if filed == 'dob':
             birthdate = tk.Label(window,text='Birth Date',**label_txt)
             birthdate.place(x=50,y=400)
             widgets_list.append(birthdate)
             date =tk.StringVar(window)
-            cal=DateEntry(window,selectmode='day',textvariable=date)
+            cal=DateEntry(window,selectmode='day',textvariable=date,date_pattern='yyyy/mm/dd')
             cal.place(x=200, y=400)
             widgets_list.append(cal)
             value.append(cal)
@@ -160,7 +163,6 @@ def update_field(window,filed,name,id):
         update_btn=tk.Button(window,text="Update",**nrom_btn,command=lambda:[db_update(name,filed,id.get(),value[-1].get())])
         update_btn.place(x=25,y=150)
         
-#def db_update(table_name,field,id,value):
 
 
 def delete(window ,name):
@@ -177,8 +179,7 @@ def delete(window ,name):
         error_label.place(x=50,y=130)
         def check():
          try:
-          ce = int(e_id.get())
-          delt_error_hand(name, ce)
+          db_delete(name, int(e_id.get()))
          except ValueError:
            error_label.config(text="please enter int value")
 
@@ -191,16 +192,16 @@ def delete(window ,name):
         del_btn.place(x=25,y=150)
 
 def std_course_win(window):
-    studentdb_button=tk.Button(window,text="insert",**nrom_btn,command=lambda:[clear_window(window),enroll_course(window)])
+    studentdb_button=tk.Button(window,text="Enroll",**nrom_btn,command=lambda:[clear_window(window),enroll_course(window,"Enroll")])
     studentdb_button.place(x=30,y=10)
-    studentdb_button=tk.Button(window,text="delete",**nrom_btn,command=lambda:[clear_window(window),delete_course(window)])
+    studentdb_button=tk.Button(window,text="Drop",**nrom_btn,command=lambda:[clear_window(window),drop_course(window,"Enroll")])
     studentdb_button.place(x=30,y=70)
 
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
         
 
-def enroll_course(window):
+def enroll_course(window,table):
     ST_ID=tk.Label(window,text='Student ID',**label_txt)
     ST_ID.place(x=10,y=90)
     st_entry=tk.Entry(window,width=30)
@@ -209,15 +210,15 @@ def enroll_course(window):
     cor_ID.place(x=10,y=130)
     cor_entry=tk.Entry(window,width=30)
     cor_entry.place(x=170, y=139)
-    date=tk.Label(window,text='Date',**label_txt)
-    date.place(x=10,y=170)
-    date=tk.Entry(window,width=30)
-    date.place(x=170, y=179)
-    year=tk.Label(window,text='Year',**label_txt)
-    year.place(x=10,y=210)
+    year=tk.Label(window,text='year',**label_txt)
+    year.place(x=10,y=170)
     year=tk.Entry(window,width=30)
-    year.place(x=170, y=219)
-    en_sub=tk.Button(window,text='Enroll',**nrom_btn)
+    year.place(x=170, y=179)
+    univ_year=tk.Label(window,text='University year',**label_txt)
+    univ_year.place(x=10,y=210)
+    univ_year=tk.Entry(window,width=30)
+    univ_year.place(x=170, y=219)
+    en_sub=tk.Button(window,text='Enroll',**nrom_btn,command=lambda:([db_enroll_course(st_entry.get(),cor_entry.get(),year.get(),univ_year.get())]))
     en_sub.place(x=170,y=260)
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
@@ -225,7 +226,7 @@ def enroll_course(window):
 
 
 
-def delete_course(window):     
+def drop_course(window,table):     
     ST_ID=tk.Label(window,text='Student ID',**nrom_btn)
     ST_ID.place(x=10,y=90)
     st_entry=tk.Entry(window,width=30)
@@ -242,9 +243,9 @@ def delete_course(window):
 
     def check():
         try:
-          co_id = int(cor_entry.get())
-          st_id= int(st_entry.get())
-          delt_error_hand_enroll('Enroll', co_id,st_id)
+            course_id = int(cor_entry.get())
+            id= int(st_entry.get())
+            db_drop_course('Enroll', course_id,id)
         except ValueError:
            error_label.config(text="please enter int value")
 
@@ -256,9 +257,9 @@ def delete_course(window):
     en_sub.place(x=170,y=260)
 
 def ins_course_win(window):
-    studentdb_button=tk.Button(window,text="insert",**nrom_btn,command=lambda:[clear_window(window),insert_t(window)])
+    studentdb_button=tk.Button(window,text="Add Course",**nrom_btn,command=lambda:[clear_window(window),insert_t(window)])
     studentdb_button.place(x=30,y=10)
-    studentdb_button=tk.Button(window,text="delete",**nrom_btn,command=lambda:[clear_window(window),delete_t(window)])
+    studentdb_button=tk.Button(window,text="Drop Course",**nrom_btn,command=lambda:[clear_window(window),delete_t(window)])
     studentdb_button.place(x=30,y=70)
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
@@ -272,7 +273,7 @@ def insert_t(window):
     cor_ID.place(x=10,y=130)
     cor_entry=tk.Entry(window,width=30)
     cor_entry.place(x=190, y=139)
-    en_sub=tk.Button(window,text='Enroll',**label_txt)
+    en_sub=tk.Button(window,text='Add course',**label_txt,command=lambda:[ db_teach_course(ins_entry.get(),cor_entry.get())])
     en_sub.place(x=170,y=260)
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
@@ -288,7 +289,7 @@ def delete_t(window):
     cor_entry=tk.Entry(window,width=30)
     cor_entry.place(x=190, y=139)
     error_label = tk.Label(window, text="", bg='#EC7063')
-    error_label.place(x=50, y=150)
+    error_label.place(x=50, y=200)
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)
 
@@ -296,7 +297,7 @@ def delete_t(window):
         try:
             co_id = int(cor_entry.get())
             ins_id = int(ins_entry.get())
-            delt_error_hand_enroll('Teach', co_id, ins_id)
+            db_drop_course('Teach', co_id, ins_id)
         except ValueError:
             error_label.config(text="please enter int value")
 
@@ -331,6 +332,9 @@ def add_grade(window):
     
     year=tk.Entry(window,width=30)
     year.place(x=190, y=210)
+
+    en_sub=tk.Button(window,text='Add Degree',**nrom_btn,command =lambda:[db_degree(ins_entry.get(),degree_entry.get(),univeristy_entry.get(),year.get())])
+    en_sub.place(x=170,y=260)
 
     back_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     back_button.place(x=500,y=20)

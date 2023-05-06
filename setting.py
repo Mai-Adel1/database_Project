@@ -18,7 +18,7 @@ nrom_btn = {
 back_btn = {
 
     "font":"('monospace',20,'bold')",
-    "fg":"black",
+    "fg":"white",
     "bg":"#EC7063", 
     "width":"5",
     "activeforeground":"#EC7063"
@@ -38,4 +38,9 @@ radio_btn ={
 "foreground" : "#000000", 
 "font":"('monospace',15,'bold')",
 
+}
+
+error_label = {
+
+     "bg":"#EC7063"
 }
