@@ -41,8 +41,8 @@ win = {
 radio_btn ={
 
 "background" : "#EC7063",
-"foreground" : "#000000", 
-"font":"('monospace',15,'bold')",
+"foreground" : "white", 
+"font":('monospace',20,'bold'),
 
 }
 form_txt={

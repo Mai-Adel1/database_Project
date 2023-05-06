@@ -152,7 +152,7 @@ def insert(window,name):
 
 def update(window,name):
         flag = False
-        head1=tk.Label(window,text="Update" + name,**label_txt)
+        head1=tk.Label(window,text="Update " + name,**label_txt)
         head1.place(x=30,y=15)
 
         id= tk.Label(window,text='Enter your ID',**form_txt)
@@ -401,7 +401,7 @@ def delete_t(window,back):
     en_sub=tk.Button(window,text='delete',**nrom_btn,command=check)
     en_sub.place(x=50,y=220)
 
-def add_grade(window):
+def add_grade(window,back):
     Label1 = tk.Label(text='Instructor Degree', **label_txt)
     Label1.place(x=30, y=15)
     ins_ID=tk.Label(window,text='Instuctor ID',**form_txt)
