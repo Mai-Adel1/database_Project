@@ -55,9 +55,60 @@ def search(window,name):
                   e_field_srch = tk.Entry(window,width=20)
                   e_field_srch.place(x=160,y=140)
                   widgets_list.append(e_field_srch)
-
-                  search_button=tk.Button(window,text="search",**nrom_btn)
+                  error_label = tk.Label(window, text="", bg='#EC7063')
+                  error_label.place(x=50,y=210)
+                  def check():
+                      if (field_name == "ID"):
+                             try:
+                                 if not e_field_srch.get().isdigit:
+                                      raise ValueError
+                                  
+                                 id = int(e_field_srch.get())
+                                 rows=search_check(name, field_name,int(e_field_srch.get()))
+                                 if rows is None:
+                                     raise Exception("there is no data")
+                                 if len(rows)==0:
+                                     raise Exception("there is no data")
+                                      
+                                 else:
+                                      text = tk.Text(window)
+                                      for row in rows:
+                                        text.insert(tk.END, str(row) + "\n")
+                                      text.place(x=10,y=210)
+                             except  ValueError:
+                                 
+                                 error_label.config(text="please enter int value")
+                                 
+                             except Exception as E:
+                                 
+                                 error_label.config(text=E)
+                                 
+                      else:
+                              try:
+                                 cc = e_field_srch.get()
+                                 if not (cc.isalpha()):
+                                    raise ValueError
+                                 e_fln = str(e_field_srch.get())
+                                 rows = search_check(
+                                     name, field_name, str(e_field_srch.get()))
+                                 if rows is None:
+                                     raise Exception("there is no data")
+                                 if len(rows)==0:
+                                     
+                                     raise Exception("there is no data")
+                                 else:
+                                     text = tk.Text(window)
+                                     for row in rows:
+                                          text.insert(tk.END, str(row) + "\n")
+                                     text.place(x=10, y=210)
+                                    
+                              except  ValueError:
+                                error_label.config(text="please enter string")
+                                
+                              except Exception as E:
+                                 error_label.config(text=E)
+                             
+                  
+                  search_button=tk.Button(window,text="search",**nrom_btn,command=check)
                   search_button.place(x=10,y=170)
-
-
       
