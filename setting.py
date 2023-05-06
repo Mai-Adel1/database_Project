@@ -1,23 +1,29 @@
 label_txt ={
-    "font":"('monospace',25,'bold')",
+    "font":('monospace',25,'bold'),
     "fg":'white',
     "bg":'#EC7063'
 }
 wel_label_txt={
-    "font":"('monospace',1000,'bold')",
+    "font":('monospace',20),
+    "fg":'white',
+    "bg":'#EC7063'
+}
+
+db_label_txt={
+    "font":('monospace',25,'bold'),
     "fg":'white',
     "bg":'#EC7063'
 }
 nrom_btn = {
 
-    "font":"('monospace',20,'bold')",
+    "font":('monospace',20),
     "fg":'#EC7063',
     "bg":'#FDEBD0', 
-    "width":"13"
+    "width":"10"
 }
 back_btn = {
 
-    "font":"('monospace',20,'bold')",
+    "font":('monospace',15),
     "fg":"white",
     "bg":"#EC7063", 
     "width":"5",
@@ -27,7 +33,7 @@ back_btn = {
 
 win = {
 
-    "geometry":"800x600",
+    "geometry":"750x500",
     "background":'#EC7063'
 
        }
@@ -35,12 +41,20 @@ win = {
 radio_btn ={
 
 "background" : "#EC7063",
-"foreground" : "#000000", 
-"font":"('monospace',15,'bold')",
+"foreground" : "white", 
+"font":('monospace',20,'bold'),
 
 }
 
 error_label = {
 
      "bg":"#EC7063"
+
+
+}
+form_txt={
+    "font":('monospace',20),
+    "fg":'white',
+    "bg":'#EC7063'
+
 }

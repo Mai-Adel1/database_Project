@@ -16,10 +16,10 @@ def search_win(window):
       back_button.place(x=100,y=230)
 
       back_button=tk.Button(window,text="Select all",**nrom_btn,command=lambda:[clear_window(window),search(window,"Courses")])
-      back_button.place(x=100,y=290)
+      back_button.place(x=90,y=290)
 
-      setback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),procedures_window.emp_win(window,home)])
-      setback_button.place(x=400,y=20)
+      setback_button=tk.Button(window,text="Back",**back_btn,command=lambda:[clear_window(window),procedures_window.emp_win(window,home)])
+      setback_button.place(x=550,y=15)
 
 widgets_list =[]
 def search(window,name):
@@ -46,11 +46,11 @@ def search(window,name):
                         widgets.destroy()
                         
                   field_srch= tk.Label(window,text=field_name,**label_txt)
-                  field_srch.place(x=10,y=130)
+                  field_srch.place(x=10,y=360)
                   widgets_list.append(field_srch)
 
                   e_field_srch = tk.Entry(window,width=20)
-                  e_field_srch.place(x=160,y=140)
+                  e_field_srch.place(x=230,y=375)
                   widgets_list.append(e_field_srch)
                   
                   search_button=tk.Button(window,text="search",**nrom_btn,command=lambda:[db_search(name,field_search.get(),e_field_srch.get())])
