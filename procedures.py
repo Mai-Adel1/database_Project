@@ -84,3 +84,88 @@ def insert_error_hand_degree(table_name,inst_id,deg,univer,year):
    cur.execute(sql, (inst_id,deg,univer,year))
    conn.commit()
    conn.close()
+def search_check(table_name,feild_name,e_feild_entry):
+   if(feild_name=="ID"):
+      if(table_name=="Student"):
+        sql = '''
+                 select * FROM {} 
+                 left JOIN Enroll ON {}.Studentid = Enroll.S_id 
+                 left JOIN Courses ON  Enroll.C_id = Courses.C_id 
+                 WHERE {}.Studentid = %s''' .format(table_name,table_name,table_name)
+        cur.execute(sql % e_feild_entry)
+        rows=cur.fetchall()
+        return rows
+      elif (table_name == "Instructor"):
+          sql = '''
+                 select * FROM {}
+                 left JOIN Teach ON {}.I_id = Teach.I_id
+                 left JOIN Courses ON  Teach.C_id = Courses.C_id
+                 WHERE {}.I_id = %s''' .format(table_name, table_name, table_name)
+          cur.execute(sql % e_feild_entry)
+          rows = cur.fetchall()
+          return rows
+      elif table_name=="Courses":
+               sql = '''
+                 select * FROM Courses
+                 JOIN Enroll ON Courses.C_id = Enroll.C_id
+                 JOIN Student ON  Enroll.S_id= Studentid
+                 JOIN Teach ON Courses.C_id = Teach.C_id
+                 JOIN Instructor ON Teach.I_id= Instructor.I_id
+                 where Courses.C_id = %s
+                '''
+               cur.execute(sql % e_feild_entry)
+               rows = cur.fetchall() 
+               return rows
+       
+   else:
+      if (table_name == "Student"):
+       if (feild_name == "First Name"):
+        sql = '''
+                select * FROM {}
+                left JOIN Enroll ON {}.Studentid = Enroll.S_id
+                left JOIN Courses ON  Enroll.C_id = Courses.C_id
+                WHERE {}.FirstName = "{}" ''' .format(table_name, table_name, table_name, e_feild_entry)
+        cur.execute(sql)
+        rows=cur.fetchall()
+        return rows
+       else:
+          sql = '''
+               select * FROM {}
+               left JOIN Enroll ON {}.Studentid = Enroll.S_id
+               left JOIN Courses ON  Enroll.C_id = Courses.C_id
+               WHERE {}.LastName= "{}" ''' .format(table_name, table_name, table_name, e_feild_entry)
+          cur.execute(sql)
+          rows = cur.fetchall()
+          return rows
+      elif (table_name == "Instructor"):
+           if (feild_name == "First Name"):
+            sql = '''
+        select * FROM {}
+        left JOIN Teach ON {}.I_id = Teach.I_id
+        left JOIN Courses ON  Teach.C_id = Courses.C_id
+        WHERE {}.fname = "{}" ''' .format(table_name, table_name, table_name, e_feild_entry)
+            cur.execute(sql)
+            rows = cur.fetchall()
+            return rows
+           else:
+             sql = '''
+        select * FROM {}
+        left JOIN Teach ON {}.I_id = Teach.I_id
+        left JOIN Courses ON  Teach.C_id = Courses.C_id
+        WHERE {}.lname= "{}" ''' .format(table_name,table_name,table_name,e_feild_entry)
+             cur.execute(sql)
+             rows = cur.fetchall()
+             return rows   
+      
+      else:
+         sql = '''
+                 select * FROM Courses
+                 JOIN Enroll ON Courses.C_id = Enroll.C_id
+                 JOIN Student ON  Enroll.S_id= Studentid
+                 JOIN Teach ON Courses.C_id = Teach.C_id
+                 JOIN Instructor ON Teach.I_id= Instructor.I_id
+                 where Courses.C_Name = "{}"
+                '''.format(e_feild_entry)
+         cur.execute(sql)
+         rows = cur.fetchall()   
+        
