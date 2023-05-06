@@ -1,24 +1,24 @@
 label_txt ={
-    "font":"('monospace',25,'bold')",
+    "font":('monospace',20,'bold'),
     "fg":'white',
     "bg":'#EC7063'
 }
 wel_label_txt={
-    "font":"('monospace',1000,'bold')",
+    "font":('monospace',90,'bold'),
     "fg":'white',
     "bg":'#EC7063'
 }
 nrom_btn = {
 
-    "font":"('monospace',20,'bold')",
+    "font":('monospace',20,'bold'),
     "fg":'#EC7063',
     "bg":'#FDEBD0', 
-    "width":"13"
+    "width":"10"
 }
 back_btn = {
 
-    "font":"('monospace',20,'bold')",
-    "fg":"black",
+    "font":('monospace',20,'bold'),
+    "fg":"white",
     "bg":"#EC7063", 
     "width":"5",
     "activeforeground":"#EC7063"

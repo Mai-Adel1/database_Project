@@ -1,12 +1,12 @@
 import tkinter as tk
 from setting import *
-from employe import emp_win
+from procedures_window import emp_win
 from support import clear_window
 
 def home(window):
     
     Label1=tk.Label(text='Welcome',**wel_label_txt)
-    Label1.place(x=300,y=100)
+    Label1.place(x=200,y=100)
 
     emp_btn=tk.Button(text='Continue',**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
     emp_btn.place(x=300,y=500)
@@ -18,6 +18,8 @@ def start():
     window.configure(background=win['background'])
     home(window)
     window.mainloop()
+
+    
 
 
 
