@@ -30,3 +30,43 @@ def delt_error_hand(table_name, id):
    cur.execute(sql, (id))
    conn.commit()
    conn.close()
+
+def db_update(table,column,id,value):
+   print("tablle name   {}".format(table))
+   print("field         {}".format(column))
+   print("id            {}".format(id))
+   print("value         {}".format(value))
+
+sql ='''
+UPDATE {}
+SET {} = {}
+WHERE condition
+'''
+
+cursor = conn.cursor()
+
+# Show all tables in the database
+cursor.execute("SHOW TABLES")
+
+# Fetch all the tables from the cursor
+tables = cursor.fetchall()
+
+# Loop through the tables and print their names
+for table in tables:
+
+   cursor.execute("SHOW COLUMNS FROM {}".format(table[0]))
+
+   # Fetch all the columns from the cursor
+   columns = cursor.fetchall()
+
+   # Loop through the columns and print their names
+   print(table[0])
+   print()
+   for column in columns:
+       print(column[0] + "  " + column[1])
+   print()
+   print('--------------------------')
+   print()
+# Close the cursor and the database connection
+cursor.close()
+conn.close()

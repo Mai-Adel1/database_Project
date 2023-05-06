@@ -111,11 +111,11 @@ def insert(window,name):
 
 
 def update(window,name):
-        flag = False
+    
         head1=tk.Label(window,text="Update" + name,**label_txt)
         head1.place(x=30,y=10)
 
-        id= tk.Label(window,text='Enter your ID',**label_txt)
+        id= tk.Label(window,text='ID',**label_txt)
         id.place(x=50,y=70)
 
         id_entry=tk.Entry(window,width=30)
@@ -128,15 +128,15 @@ def update(window,name):
         q.place(x=50,y=150)
 
         choices = tk.IntVar()
-        fname_rd = tk.Radiobutton(window, text='First Name', variable=choices, value=1, **radio_btn,command=lambda:[update_field(window,'First Name')])
+        fname_rd = tk.Radiobutton(window, text='First Name', variable=choices, value=1, **radio_btn,command=lambda:[update_field(window,'First Name',name,id_entry)])
         fname_rd.place(x=200, y=190)
-        lname_rd = tk.Radiobutton(window, text='Last Name', variable=choices, value=2, **radio_btn,command=lambda:[update_field(window,'Last Name')])
+        lname_rd = tk.Radiobutton(window, text='Last Name', variable=choices, value=2, **radio_btn,command=lambda:[update_field(window,'Last Name',name,id_entry)])
         lname_rd.place(x=200, y=230)
-        age_rd = tk.Radiobutton(window, text='Age', variable=choices, value=3, **radio_btn ,command=lambda:[update_field(window,"Age")])
+        age_rd = tk.Radiobutton(window, text='Age', variable=choices, value=3, **radio_btn ,command=lambda:[update_field(window,"Age",name,id_entry)])
         age_rd.place(x=200, y=270)
 widgets_list =[]
-def update_field(window,filed):
-        
+def update_field(window,filed,name,id):
+        value = []
         for widgets in widgets_list:
             widgets.destroy()
 
@@ -148,18 +148,19 @@ def update_field(window,filed):
             cal=DateEntry(window,selectmode='day',textvariable=date)
             cal.place(x=200, y=400)
             widgets_list.append(cal)
+            value.append(cal)
         else:    
             e_field = tk.Entry(window,width=20)
             e_field.place(x=200,y=400)
+            value.append(e_field)
             widgets_list.append(e_field)
-
             l_field= tk.Label(window,text=filed,**label_txt)
             l_field.place(x=50,y=400)
             widgets_list.append(l_field)
-        update_btn=tk.Button(window,text="Delete",**nrom_btn)
+        update_btn=tk.Button(window,text="Update",**nrom_btn,command=lambda:[db_update(name,filed,id.get(),value[-1].get())])
         update_btn.place(x=25,y=150)
         
-
+#def db_update(table_name,field,id,value):
 
 
 def delete(window ,name):
