@@ -5,11 +5,13 @@ from support import clear_window
 
 def home(window):
     
-    Label1=tk.Label(text='Welcome',**wel_label_txt)
-    Label1.place(x=200,y=100)
+    Label1=tk.Label(text='Welcome to',**wel_label_txt)
+    Label1.place(x=40,y=70)
+    Label1=tk.Label(text='Student Enroll database',**db_label_txt)
+    Label1.place(x=100,y=100)
 
     emp_btn=tk.Button(text='Continue',**nrom_btn,command=lambda:[clear_window(window),emp_win(window,home)])
-    emp_btn.place(x=300,y=500)
+    emp_btn.place(x=300,y=200)
 
 def start():
     window=tk.Tk()

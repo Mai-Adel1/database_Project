@@ -5,20 +5,23 @@ import home
 import procedures_window 
 
 def search_win(window):
+      Label1 = tk.Label(text='Select DataBase for search', **label_txt)
+      Label1.place(x=30, y=15)
+
       show_course_btn=tk.Button(window,text='Students',**nrom_btn,command=lambda:[clear_window(window),search(window,"Students")])
-      show_course_btn.place(x=300,y=110)
+      show_course_btn.place(x=90,y=80)
 
       enroll_btn=tk.Button(window,text='Instructors',**nrom_btn,command=lambda:[clear_window(window),search(window,"Instructors")])
-      enroll_btn.place(x=300,y=170)
+      enroll_btn.place(x=90,y=150)
 
       back_button=tk.Button(window,text="Courses",**nrom_btn,command=lambda:[clear_window(window),search(window,"Courses")])
-      back_button.place(x=300,y=230)
+      back_button.place(x=90,y=220)
 
       back_button=tk.Button(window,text="Select all",**nrom_btn,command=lambda:[clear_window(window),search(window,"Courses")])
-      back_button.place(x=300,y=290)
+      back_button.place(x=90,y=290)
 
-      setback_button=tk.Button(window,text="Back",**nrom_btn,command=lambda:[clear_window(window),procedures_window.emp_win(window,home)])
-      setback_button.place(x=500,y=20)
+      setback_button=tk.Button(window,text="Back",**back_btn,command=lambda:[clear_window(window),procedures_window.emp_win(window,home)])
+      setback_button.place(x=550,y=15)
 
 widgets_list =[]
 def search(window,name):
